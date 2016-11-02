@@ -21,7 +21,7 @@ def olci_srf (step, fname="../original_data/OLCI_SRF.nc"):
         passer = y_interp >= 0.005
         code_block = "%s = ( %d, %0.5f, %0.5f, \n" % \
             ( "S3A_OLCI_%02d" % (band+1), band+step, 
-            wv[passer][0], wv[passer][-1]) 
+            wv[passer][0]/1000., wv[passer][-1]/1000.) 
         splodge = "".join ( ["%0.5f, "%r for r in y_interp[passer]])
         code_block += "\t\t np.array([%s]))\n\n" % splodge
         print code_block
@@ -42,7 +42,7 @@ def slstr_srf (step):
         passer = y_interp >= 0.005
         code_block = "%s = ( %d, %0.5f, %0.5f, \n" % \
             ( "S3A_SLSTR_%02d" % (band+1), band+step, 
-            wv[passer][0], wv[passer][-1]) 
+            wv[passer][0]/1000., wv[passer][-1]/1000.) 
         splodge = "".join ( ["%0.5f, "%r for r in y_interp[passer]])
         code_block += "\t\t np.array([%s]))\n\n" % splodge
         print code_block
@@ -60,7 +60,7 @@ def s2a_srf (step):
         passer = y_interp >= 0.005
         code_block = "%s = ( %d, %0.5f, %0.5f, \n" % \
             ( "S2A_MSI_%02d" % (band), band+step, 
-            wv[passer][0], wv[passer][-1]) 
+            wv[passer][0]/1000., wv[passer][-1]/1000.) 
         splodge = "".join ( ["%0.5f, "%r for r in y_interp[passer]])
         code_block += "\t\t np.array([%s]))\n\n" % splodge
         print code_block
